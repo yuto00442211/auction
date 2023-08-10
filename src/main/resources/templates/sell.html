@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャルション - Top</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .site-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .search-form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .search-label {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .search-select {
+            padding: 5px;
+        }
+        .button-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .action-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .action-button:hover {
+            background-color: #2980b9;
+        }
+        .product-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .product-card {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+        }
+        .product-card-name {
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .product-card-price {
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="site-name">キャルション</div>
+        <div>
+            <form th:action="@{login}" method="post">
+                <button class="action-button">ログイン</button>
+            </form>
+        </div>
+    </header>
+    <div class="container">
+        <div class="search-form">
+            <label class="search-label" for="genre">ジャンル：</label>
+            <select class="search-select" id="genre">
+                <option value="all">全てのジャンル</option>
+                <option value="electronics">電化製品</option>
+                <option value="clothing">服</option>
+                <!-- 他のジャンルのオプションも追加 -->
+            </select>
+        </div>
+        <div class="button-container">
+            <form th:action="@{sub}" method="post">
+                <button class="action-button">会員登録</button>
+            </form>
+            <form th:action="@{creat}" method="post">
+                <button class="action-button">出品する</button>
+            </form>
+        </div>
+        <div class="product-container">
+            <div class="product-card">
+                <img src="item1.jpg" alt="Product 1">
+                <form th:action="@{product}" method="post">
+                    <button class="action-button product-card-name">商品名 1</button>
+                </form>
+                <div class="product-card-price">$100</div>
+            </div>
+            <div class="product-card">
+                <img src="item2.jpg" alt="Product 2">
+                <form th:action="@{product}" method="post">
+                    <button class="action-button product-card-name">商品名 2</button>
+                </form>
+                <div class="product-card-price">$50</div>
+            </div>
+            <div class="product-card">
+                <img src="item3.jpg" alt="Product 3">
+                <form th:action="@{product}" method="post">
+                    <button class="action-button product-card-name">商品名 3</button>
+                </form>
+                <div class="product-card-price">$80</div>
+            </div>
+            <div class="product-card">
+                <img src="item4.jpg" alt="Product 4">
+                <form th:action="@{product}" method="post">
+                    <button class="action-button product-card-name">商品名 4</button>
+                </form>
+                <div class="product-card-price">$120</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

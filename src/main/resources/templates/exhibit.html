@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャルション - 出品</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .sell-container {
+            max-width: 600px;
+            margin: 100px auto;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+        .sell-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .sell-form {
+            text-align: center;
+        }
+        .sell-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        .sell-textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            resize: vertical;
+        }
+        .sell-select {
+            padding: 5px;
+        }
+        .sell-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .sell-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="sell-container">
+        <div class="sell-title">商品を出品する</div>
+        <div class="sell-form">
+            <form action="/sell/sell" method="POST" enctype="multipart/form-data">
+                <input class="sell-input" type="text" name="productName" placeholder="商品名">
+                <input class="sell-input" type="number" name="startingPrice" placeholder="開始価格">
+                <label for="endTime">終了時間：</label>
+                <input class="sell-input" type="datetime-local" name="endTime" id="endTime">
+                <label for="genre">ジャンル：</label>
+                <select class="sell-select" id="genre" name="genre">
+                    <option value="electronics">電化製品</option>
+                    <option value="clothing">服</option>
+                    <!-- 他のジャンルのオプションも追加 -->
+                </select>
+                <textarea class="sell-textarea" name="productDescription" placeholder="商品説明"></textarea>
+                <input class="sell-input" type="file" name="productImage" accept="image/*">
+                <button class="sell-button" type="submit">出品する</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

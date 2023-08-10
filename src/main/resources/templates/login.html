@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャルション - ログイン</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+        }
+        .login-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .login-form {
+            text-align: center;
+        }
+        .login-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            transition: border-color 0.3s ease-in-out;
+        }
+        .login-input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        .login-button,
+        .back-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .login-button:hover,
+        .back-button:hover {
+            background-color: #2980b9;
+        }
+        .back-button {
+            background-color: #ddd;
+            color: black;
+            margin-right: 10px;
+        }
+        .back-button:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-title">ログイン</div>
+        <div class="login-form">
+            <form action="/login" method="POST">
+                <input class="login-input" type="email" name="email" placeholder="メールアドレス">
+                <input class="login-input" type="password" name="password" placeholder="パスワード">
+                <button class="login-button" type="submit">ログイン</button>
+            </form>
+            <form th:action="@{sell}" method="get">
+                <button class="back-button">Topページに戻る</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャルション - 商品詳細</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .product-details-container {
+            max-width: 600px;
+            margin: 100px auto;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+        }
+        .product-details-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .product-details-content {
+            text-align: center;
+        }
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .product-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        .bid-count {
+            margin-bottom: 10px;
+        }
+        .remaining-time {
+            margin-bottom: 10px;
+        }
+        .product-description {
+            margin-bottom: 20px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-button,
+        .bid-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .back-button:hover,
+        .bid-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="product-details-container">
+        <div class="product-details-title">商品詳細</div>
+        <div class="product-details-content">
+            <img class="product-image" src="item1.jpg" alt="Product 1">
+            <div class="product-name">商品名 1</div>
+            <div class="product-price">現在の価格: $100</div>
+            <div class="bid-count">入札件数: 5</div>
+            <div class="remaining-time" id="remainingTime">残り時間: 2日 12時間</div>
+            <div class="product-description">
+                商品説明: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel volutpat leo.
+            </div>
+            <div class="button-container">
+                <form th:action="@{sell}" method="get">
+                    <button class="back-button">Topページに戻る</button>
+                </form>
+                <button class="bid-button" onclick="showBidDialog()">入札する</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-container">
+        <div class="chat-title">チャット</div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- チャットメッセージはここに表示されます -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="メッセージを入力...">
+            <button onclick="sendMessage()">送信</button>
+        </div>
+    </div>
+
+    <div id="bidDialog" style="display: none;">
+        <div>Bid Amount:</div>
+        <input type="number" id="bidAmount">
+        <button onclick="placeBid()">入札</button>
+        <label><input type="checkbox" id="agree">同意する</label>
+    </div>
+
+    <script>
+        function showBidDialog() {
+            document.getElementById('bidDialog').style.display = 'block';
+        }
+
+        function placeBid() {
+            var bidAmount = document.getElementById('bidAmount').value;
+            var agreeCheckbox = document.getElementById('agree');
+            if (bidAmount && agreeCheckbox.checked) {
+                // バリデーションを通ったら入札処理を行う（サーバーサイドで実装）
+                alert('入札が完了しました。');
+                document.getElementById('bidDialog').style.display = 'none';
+            } else {
+                alert('金額を入力し、同意にチェックしてください。');
+            }
+        }
+
+        // リアルタイムで残り時間を更新する関数
+        function updateRemainingTime(endTime) {
+            const now = new Date().getTime();
+            const endTimeMillis = new Date(endTime).getTime();
+            const remainingTimeMillis = endTimeMillis - now;
+
+            if (remainingTimeMillis <= 0) {
+                document.getElementById('remainingTime').innerText = 'オークション終了';
+            } else {
+                const days = Math.floor(remainingTimeMillis / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((remainingTimeMillis % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((remainingTimeMillis % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('remainingTime').innerText = `残り時間: ${days}日 ${hours}時間 ${minutes}分`;
+            }
+        }
+
+        // 初期表示時に残り時間を更新
+        updateRemainingTime('2023-08-15T18:00:00'); // 終了時間を設定
+
+        // 1分ごとに残り時間を更新
+        setInterval(function() {
+            updateRemainingTime('2023-08-15T18:00:00'); // 終了時間を設定
+        }, 60000); // 1分ごとに更新
+
+        function sendMessage() {
+            var messageInput = document.getElementById('messageInput');
+            var message = messageInput.value.trim();
+            if (message !== '') {
+                var chatMessages = document.getElementById('chatMessages');
+                var newMessage = document.createElement('div');
+                newMessage.innerText = message;
+                chatMessages.appendChild(newMessage);
+                messageInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
