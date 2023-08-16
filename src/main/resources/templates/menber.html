@@ -59,44 +59,25 @@
         <div class="registration-title">新規登録</div>
         <div class="registration-form">
             <form action="/register" method="POST" onsubmit="return validateForm()">
-                <label class="registration-label" for="name">名前</label>
-                <input class="registration-input" type="text" id="name" required>
+                <label class="registration-label" >名前</label>
+                <input class="registration-input" type="text"  required>
 
-                <label class="registration-label" for="address">住所</label>
-                <input class="registration-input" type="text" id="address" required>
+                <label class="registration-label">住所</label>
+                <input class="registration-input" type="text"required>
 
-                <label class="registration-label" for="tel">電話番号</label>
-                <input class="registration-input" type="tel" id="tel" required>
+                <label class="registration-label" >電話番号</label>
+                <input class="registration-input" type="tel"  required>
 
-                <label class="registration-label" for="email">メールアドレス</label>
-                <input class="registration-input" type="email" id="email" required>
+                <label class="registration-label" >メールアドレス</label>
+                <input class="registration-input" type="email" required>
 
-                <label class="registration-label" for="password">パスワード</label>
-                <input class="registration-input" type="password" id="password" required>
+                <label class="registration-label" >パスワード</label>
+                <input class="registration-input" type="password" required>
 
                 <button class="registration-button" type="submit">登録</button>
             </form>
         </div>
     </div>
-	<!--
-    <script>
-        function validateForm() {
-            var name = document.getElementById('name').value.trim();
-            var address = document.getElementById('address').value.trim();
-            var tel = document.getElementById('tel').value.trim();
-            var email = document.getElementById('email').value.trim();
-            var password = document.getElementById('password').value.trim();
 
-            if (name === '' || address === '' || tel === '' || email === '' || password === '') {
-                alert('全てのフィールドを入力してください。');
-                return false;
-            }
-
-            // ここで他のバリデーションを追加
-
-            return true;
-        }
-    </script>
-    -->
 </body>
 </html>
